@@ -64,6 +64,12 @@ import tkinter as tk
 from tkinter import filedialog
 from PIL import ImageTk, Image
 
+
+def writeFile(path,stringWr):
+    write_file = open(path, "w+")
+    write_file.write(stringWr)
+    write_file.close()
+    
 def makeLZ77(event):
     msg = Toplevel()
     msg.geometry('500x500')
@@ -84,15 +90,8 @@ def makeLZ77(event):
     btn_3 = Button(master=msg, text="LZ77_CODING_FILE", borderwidth=0)
     btn_4 = Button(master=msg, text="LZ77_DECODING_FILE", borderwidth=0)
 
-    COMP_file = open("/Users/LZ77/LZ77_CODING_comp.txt", "w+")
-    COMP_file.write(str(lz77_coding(START)))
-    COMP_file.close()
-
-
-    DECOMP_file = open("/Users/LZ77/LZ77_DECODING_decomp.txt", "w+")
-    DECOMP_file.write(str(lz77_decoding(lz77_coding(START))))
-    DECOMP_file.close()
-
+    writeFile("/Users/LZ77/LZ77_CODING_comp.txt", str(lz77_coding(START)))
+    writeFle("/Users/LZ77/LZ77_DECODING_decomp.txt", str(lz77_decoding(lz77_coding(START))))
 
     canvas.create_text(250,50,text="Result LZ77", fill="Black", font="Verdana 12")
 
