@@ -108,8 +108,7 @@ def makeHuffman(event):
         encodedString +=codes[i]
 
     HF_file = open("/Users/Huffman/HF.txt", "w+")
-    for i in START:
-        HF_file.write(encodedString)
+    HF_file.write(encodedString)
     HF_file.close()
 
     decodedString = decode_file(minHeap[0], encodedString)
