@@ -101,17 +101,14 @@ def makeHuffman(event):
     encodedString, decodedString= "", ""
     dictForHuffman = calcFreq(START,len(START))
     HuffmanCodes()
-    writeFile("/Users/Huffman/HF_DICT.txt","Start dictionary:\n")
-    writeFile("/Users/Huffman/HF_DICT.txt",str(dictForHuffman))
-    writeFile("/Users/Huffman/HF_DICT.txt","\nDictionary after Huffman:\n")
-    writeFile("/Users/Huffman/HF_DICT.txt",str(codes))
+    writeFile("/Users/Huffman/HF_DICT.txt",
+              f"Исходный словарь:\n{str(dictForHuffman)}\nCловарь после алгоритма Хаффмана:\n{str(codes)}" )
 
     for i in START:
         encodedString +=codes[i]
 
     writeFile("/Users/Huffman/HF.txt",encodedString)
-    decodedString = decode_file(minHeap[0], encodedString)
-    writeFile("/Users/Huffman/HF_DECODING.txt",decodedString)
+    writeFile("/Users/Huffman/HF_DECODING.txt",decode_file(minHeap[0], encodedString))
 
     msg = Toplevel()
     msg.geometry(f'500x500')
