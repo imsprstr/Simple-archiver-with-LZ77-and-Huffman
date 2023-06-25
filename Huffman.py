@@ -92,30 +92,26 @@ with open ("/Users/TEXT_START.txt") as file:
 def toFixed(numObj, digits=4):
     return f"{numObj:.{digits}}"
 
+def writeFile(path,stringWr):
+    write_file = open(path, "w+")
+    write_file.write(stringWr)
+    write_file.close()
+    
 def makeHuffman(event):
     encodedString, decodedString= "", ""
-    calcFreq(START, len(START))
+    dictForHuffman = calcFreq(START,len(START))
     HuffmanCodes()
-    HF_file_DICTS = open("/Users/Huffman/HF_DICT.txt", "w+")
-    dictForHuffman = {i: START.count(i) for i in set(START)}
-    HF_file_DICTS.write("Start dictionary:\n")
-    HF_file_DICTS.write(str(dictForHuffman))
-    HF_file_DICTS.write("\nDictionary after Huffman:\n")
-    HF_file_DICTS.write(str(codes))
-    HF_file_DICTS.close()
+    writeFile("/Users/Huffman/HF_DICT.txt","Start dictionary:\n")
+    writeFile("/Users/Huffman/HF_DICT.txt",str(dictForHuffman))
+    writeFile("/Users/Huffman/HF_DICT.txt","\nDictionary after Huffman:\n")
+    writeFile("/Users/Huffman/HF_DICT.txt",str(codes))
 
     for i in START:
         encodedString +=codes[i]
 
-    HF_file = open("/Users/Huffman/HF.txt", "w+")
-    HF_file.write(encodedString)
-    HF_file.close()
-
+    writeFile("/Users/Huffman/HF.txt",encodedString)
     decodedString = decode_file(minHeap[0], encodedString)
-    HF_file_DECODING = open("/Users/Huffman/HF_DECODING.txt", "w+")
-    HF_file_DECODING.write(decodedString)
-    HF_file_DECODING.close()
-
+    writeFile("/Users/Huffman/HF_DECODING.txt",decodedString)
 
     msg = Toplevel()
     msg.geometry(f'500x500')
